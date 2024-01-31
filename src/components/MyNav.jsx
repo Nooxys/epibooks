@@ -20,10 +20,10 @@ const MyNav = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link active href="#">
-              <i class="bi bi-house-door-fill"></i> Home
+              <i className="bi bi-house-door-fill"></i> Home
             </Nav.Link>
             <Nav.Link href="#">
-              <i class="bi bi-info-circle"></i> About
+              <i className="bi bi-info-circle"></i> About
             </Nav.Link>
             <NavDropdown title="Browse" id="collapsible-nav-dropdown">
               <NavDropdown.Item disabled href="#">
