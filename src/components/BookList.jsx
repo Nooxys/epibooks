@@ -13,6 +13,7 @@ class BookList extends Component {
             Search for a Book! <i className="bi bi-book"></i>
           </Form.Label>
           <Form.Control
+            value={this.state.word}
             type="Text"
             placeholder="I wish to see.."
             onChange={(e) => this.setState({ word: e.target.value })}

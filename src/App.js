@@ -9,6 +9,7 @@ import MyAlert from './components/MyAlert'
 // import SingleBook from './components/SingleBook'
 import horrorbooks from './data/horror.json'
 import BookList from './components/BookList'
+import CommentArea from './components/CommentArea'
 
 function App() {
   return (

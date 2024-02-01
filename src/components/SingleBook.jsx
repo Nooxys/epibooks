@@ -2,7 +2,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Component } from 'react'
-
+import CommentArea from './CommentArea'
 class SingleBook extends Component {
   state = { selected: false }
   render() {
@@ -32,6 +32,7 @@ class SingleBook extends Component {
             <Button className="w-50 mx-auto" variant="primary">
               € {this.props.price} - <i className="bi bi-cart-check"></i>
             </Button>
+            {this.state.selected && <CommentArea indice={this.props.asin} />}
           </Card.Body>
         </Card>
       </Col>
