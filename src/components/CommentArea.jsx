@@ -8,7 +8,7 @@ class CommentArea extends Component {
   fetchComments = () => {
     fetch(
       'https://striveschool-api.herokuapp.com/api/comments/' +
-        this.props.indice,
+        this.props.selected,
       {
         headers: {
           Authorization:
@@ -33,15 +33,17 @@ class CommentArea extends Component {
         console.log(err)
       })
   }
-
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.selected !== this.props.selected) this.fetchComments()
+  }
   componentDidMount() {
     this.fetchComments()
   }
   render() {
     return (
       <>
-        <CommentList review={this.state.comments} />
-        <AddComment />
+        {this.props.selected && <CommentList review={this.state.comments} />}
+        <AddComment selected={this.props.selected} />
       </>
     )
   }

@@ -4,21 +4,19 @@ import Card from 'react-bootstrap/Card'
 import { Component } from 'react'
 import CommentArea from './CommentArea'
 class SingleBook extends Component {
-  state = { selected: false }
+  // state = { selected: false }
   render() {
     return (
-      <Col md={6} lg={3} key={this.props.asin}>
+      <Col md={6} lg={6} key={this.props.asin}>
         <Card
-          onClick={() =>
-            this.state.selected
-              ? this.setState({ selected: false })
-              : this.setState({ selected: true })
-          }
-          className={
-            this.state.selected
-              ? 'h-100 text-center border border-danger'
-              : 'h-100 text-center'
-          }
+          onClick={() => {
+            this.props.changeSelected(this.props.asin)
+          }}
+          // className={
+          //   this.props.selected
+          //     ? 'h-100 text-center border border-danger'
+          //     : 'h-100 text-center'
+          // }
         >
           <Card.Img
             variant="top"
@@ -32,7 +30,7 @@ class SingleBook extends Component {
             <Button className="w-50 mx-auto" variant="primary">
               € {this.props.price} - <i className="bi bi-cart-check"></i>
             </Button>
-            {this.state.selected && <CommentArea indice={this.props.asin} />}
+            {/* {this.state.selected && <CommentArea indice={this.props.asin} />} */}
           </Card.Body>
         </Card>
       </Col>
