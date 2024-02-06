@@ -10,41 +10,40 @@ import MyAlert from './components/MyAlert'
 import horrorbooks from './data/horror.json'
 import BookList from './components/BookList'
 import CommentArea from './components/CommentArea'
-import { Component } from 'react'
+import { useState } from 'react'
 
-class App extends Component {
-  state = { selected: '' }
+const App = () => {
+  const [selected, setSelected] = useState('')
 
-  changeSelected = (value) => {
-    this.setState({ selected: value })
+  const changeSelected = (value) => {
+    setSelected(value)
   }
-  render() {
-    return (
-      <>
-        <header>
-          <MyNav />
-          <MyAlert />
-        </header>
-        <main>
-          <BookList
-            array={horrorbooks}
-            changeSelected={this.changeSelected}
-            selected={this.state.selected}
-          />
 
-          {/* <SingleBook
+  return (
+    <>
+      <header>
+        <MyNav />
+        <MyAlert />
+      </header>
+      <main>
+        <BookList
+          array={horrorbooks}
+          changeSelected={changeSelected}
+          selected={selected}
+        />
+
+        {/* <SingleBook
           title={horrorbooks[0].title}
           img={horrorbooks[0].img}
           category={horrorbooks[0].category}
           price={horrorbooks[0].price}
         /> */}
-        </main>
-        <footer>
-          <MyFooter />
-        </footer>
-      </>
-    )
-  }
+      </main>
+      <footer>
+        <MyFooter />
+      </footer>
+    </>
+  )
 }
 
 export default App

@@ -1,16 +1,13 @@
-import { Component } from 'react'
+import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 
-class AddComment extends Component {
-  state = {
-    comment: {
-      comment: '',
-      rate: '1',
-      elementId: this.props.selected,
-    },
-  }
-
-  sendComment = () => {
+const AddComment = (props) => {
+  const [comment, setComment] = useState({
+    comment: '',
+    rate: '1',
+    elementId: props.selected,
+  })
+  const sendComment = () => {
     fetch('https://striveschool-api.herokuapp.com/api/comments/', {
       method: 'POST',
       headers: {
@@ -18,7 +15,7 @@ class AddComment extends Component {
           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWJiOWIzNjViMjYxNTAwMTk4YTY5M2MiLCJpYXQiOjE3MDY3OTM3ODIsImV4cCI6MTcwODAwMzM4Mn0.J68-1s4k7_s165eAhgt-c6_2O5jzeAi4mALwZ6w58VU',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(this.state.comment),
+      body: JSON.stringify(comment),
     })
       .then((response) => {
         if (response.ok) {
@@ -32,47 +29,41 @@ class AddComment extends Component {
       })
   }
 
-  render() {
-    return (
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault()
-          console.log(this.state.comment)
-          this.sendComment()
+  return (
+    <Form
+      onSubmit={(e) => {
+        e.preventDefault()
+        console.log(comment)
+        sendComment()
+      }}
+    >
+      <Form.Control
+        value={comment.comment}
+        onChange={(e) => {
+          setComment({
+            ...comment,
+            comment: e.target.value,
+          })
+        }}
+      />
+      <Form.Select
+        value={comment.rate}
+        onChange={(e) => {
+          setComment({
+            ...comment,
+            rate: e.target.value,
+          })
         }}
       >
-        <Form.Control
-          value={this.state.comment.comment}
-          onChange={(e) => {
-            this.setState({
-              comment: {
-                ...this.state.comment,
-                comment: e.target.value,
-              },
-            })
-          }}
-        />
-        <Form.Select
-          value={this.state.comment.rate}
-          onChange={(e) => {
-            this.setState({
-              comment: {
-                ...this.state.comment,
-                rate: e.target.value,
-              },
-            })
-          }}
-        >
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </Form.Select>
-        <Button type="submit">INVIA</Button>
-      </Form>
-    )
-  }
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </Form.Select>
+      <Button type="submit">INVIA</Button>
+    </Form>
+  )
 }
 
 export default AddComment
