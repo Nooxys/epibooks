@@ -29,6 +29,7 @@ const BookList = (props) => {
             .filter((book) => book.title.includes(word))
             .map((book) => (
               <SingleBook
+                selected={props.selected}
                 changeSelected={props.changeSelected}
                 title={book.title}
                 img={book.img}
